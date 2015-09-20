@@ -49,39 +49,38 @@ int pop(PILHA_DINAMICA *pilha){
 void new_item(PILHA_DINAMICA *pilha, int x){
     int aux, result;
     aux = pop(pilha);
-    push(pilha, aux);
     aux = (aux*10)+x;
     push(pilha, aux);
 }
 
 // REALIZA A OPERACAO SOLICITADA COM OS DOIS ULTIMOS
 // ITENS DA PILHA
-void operation(PILHA_DINAMICA *pilha, int op){
+void operation(PILHA_DINAMICA *pilha, char *op){
     int x, y;
-    if (op == soma){
+    if (!strcmp("+", op)){
         y = pop(pilha);
         x = pop(pilha);
         push(pilha, x+y);
     }
-    if (op == subtracao){
+    if (!strcmp("-", op)){
         y = pop(pilha);
         x = pop(pilha);
         push(pilha, x-y);
     }
-    if (op == divisao){
+    if (!strcmp("/", op)){
         y = pop(pilha);
         x = pop(pilha);
         push(pilha, x/y);
     }
-    if (op == multiplicacao){
+    if (!strcmp("*", op)){
         y = pop(pilha);
         x = pop(pilha);
         push(pilha, x*y);
     }
-    if (op == potencia){
+    if (!strcmp("^", op)){
         y = pop(pilha);
         x = pop(pilha);
-        push(pilha, pow(x,y));
+        push(pilha, (pow(x,y)));
     }
 }
 
