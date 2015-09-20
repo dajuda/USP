@@ -42,6 +42,9 @@ int pop(PILHA_DINAMICA *pilha){
     return (aux);
 }
 
+
+// INSERE OUTRO ELEMENTO NA PILHA, MAS REALIZANDO UMA OPERACAO COM
+// O ANTERIOR
 void new_item(PILHA_DINAMICA *pilha, int x){
     int aux, result;
     aux = pop(pilha);
@@ -50,6 +53,8 @@ void new_item(PILHA_DINAMICA *pilha, int x){
     push(pilha, aux);
 }
 
+// REALIZA A OPERACAO SOLICITADA COM OS DOIS ULTIMOS
+// ITENS DA PILHA
 void operation(PILHA_DINAMICA *pilha, int op){
     int x, y;
     if (op == soma){
@@ -74,13 +79,39 @@ void operation(PILHA_DINAMICA *pilha, int op){
     }
 }
 
+
+// INSERE ZERO NO TOPO DA PILA
 void insert_zero(PILHA_DINAMICA *pilha){
     push(pilha, 0);
 }
 
+// LIMPA A PILHA
 void empty_stack(PILHA_DINAMICA *pilha){
     int aux;
     while(pilha->tamanho != 0){
         aux = pop(pilha);
     }
+}
+
+
+// IMPRIME A PILHA
+void print_stack(PILHA_DINAMICA *pilha){
+    int *vet, aux;
+    NO *p_aux;
+
+    vet = (int*) malloc (sizeof(int)*pilha->tamanho);
+    aux = pilha->tamanho;
+    p_aux = pilha->topo;
+    while(aux != 0){
+        vet[aux-1] = *p_aux->item;
+        p_aux = p_aux->anterior;
+        aux--;
+    }
+    for(aux=0; aux < pilha->tamanho; aux++){
+        printf("%d ",vet[aux]);
+    }
+    printf("\n");
+    //p_aux = NULL;
+    free(vet);
+    free(p_aux);
 }

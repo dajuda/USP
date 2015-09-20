@@ -25,3 +25,4 @@ int pop(PILHA_DINAMICA *pilha);
 void new_item(PILHA_DINAMICA *pilha, int x);
 void operation(PILHA_DINAMICA *pilha, int op);
 void empty_stack(PILHA_DINAMICA *pilha);
+void print_stack(PILHA_DINAMICA *pilha);
