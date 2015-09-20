@@ -15,7 +15,8 @@ enum OP{
     soma= 1,
     subtracao,
     divisao,
-    multiplicacao
+    multiplicacao,
+    potencia
 };
 
 PILHA_DINAMICA *create_stack();

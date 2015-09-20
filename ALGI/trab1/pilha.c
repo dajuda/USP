@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 #include "pilha.h"
 
 
@@ -76,6 +77,11 @@ void operation(PILHA_DINAMICA *pilha, int op){
         y = pop(pilha);
         x = pop(pilha);
         push(pilha, x*y);
+    }
+    if (op == potencia){
+        y = pop(pilha);
+        x = pop(pilha);
+        push(pilha, pow(x,y));
     }
 }
 
