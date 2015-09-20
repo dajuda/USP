@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 
-// CRIA A PILHA DINAMICA
+// CRIA UMA UNIDADE DA PILHA DINAMICA
 NO *unit(){
     NO *aux = (NO*) malloc (sizeof(NO));
     aux->item = (int*) malloc (sizeof(int));
@@ -29,4 +29,6 @@ int pop(PILHA_DINAMICA *pilha){
     empty = pilha->topo;
     pilha->topo = pilha->topo->anterior;
     pilha->tamanho--;
+    free(empty);
+    return (aux);
 }
