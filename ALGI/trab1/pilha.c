@@ -15,13 +15,13 @@ PILHA_DINAMICA *create_stack(){
 // CRIA UMA UNIDADE DA PILHA DINAMICA
 NO *unit(){
     NO *aux = (NO*) malloc (sizeof(NO));
-    aux->item = (int*) malloc (sizeof(int));
+    aux->item = (long*) malloc (sizeof(long));
     return aux;
 }
 
 
 // REALIZA O PUSH NA PILHA
-void push(PILHA_DINAMICA *pilha, int x){
+void push(PILHA_DINAMICA *pilha, long x){
     NO *new;
     new = unit();
     *new->item = x;
@@ -32,8 +32,8 @@ void push(PILHA_DINAMICA *pilha, int x){
 
 
 // REALIZA O POP NA PILHA
-int pop(PILHA_DINAMICA *pilha){
-    int aux;
+long pop(PILHA_DINAMICA *pilha){
+    long aux;
     NO *empty;
     aux = *pilha->topo->item;
     empty = pilha->topo;
@@ -47,7 +47,7 @@ int pop(PILHA_DINAMICA *pilha){
 // INSERE OUTRO ELEMENTO NA PILHA, MAS REALIZANDO UMA OPERACAO COM
 // O ANTERIOR
 void new_item(PILHA_DINAMICA *pilha, int x){
-    int aux, result;
+    long aux;
     aux = pop(pilha);
     aux = (aux*10)+x;
     push(pilha, aux);
@@ -56,7 +56,7 @@ void new_item(PILHA_DINAMICA *pilha, int x){
 // REALIZA A OPERACAO SOLICITADA COM OS DOIS ULTIMOS
 // ITENS DA PILHA
 void operation(PILHA_DINAMICA *pilha, char *op){
-    int x, y;
+    long x, y, i;
     if (!strcmp("+", op)){
         y = pop(pilha);
         x = pop(pilha);
@@ -82,6 +82,13 @@ void operation(PILHA_DINAMICA *pilha, char *op){
         x = pop(pilha);
         push(pilha, (pow(x,y)));
     }
+    if (!strcmp("!", op)){
+        y = pop(pilha);
+        for(i=1; y > 1; y--){
+            i = i*y;
+        }
+        push(pilha, i);
+    }
 }
 
 
@@ -92,7 +99,7 @@ void insert_zero(PILHA_DINAMICA *pilha){
 
 // LIMPA A PILHA
 void empty_stack(PILHA_DINAMICA *pilha){
-    int aux;
+    long aux;
     while(pilha->tamanho != 0){
         aux = pop(pilha);
     }
@@ -101,10 +108,11 @@ void empty_stack(PILHA_DINAMICA *pilha){
 
 // IMPRIME A PILHA
 void print_stack(PILHA_DINAMICA *pilha){
-    int *vet, aux;
+    long *vet;
+    int aux;
     NO *p_aux;
 
-    vet = (int*) malloc (sizeof(int)*pilha->tamanho);
+    vet = (long*) malloc (sizeof(long)*pilha->tamanho);
     aux = pilha->tamanho;
     p_aux = pilha->topo;
     while(aux != 0){
@@ -113,10 +121,9 @@ void print_stack(PILHA_DINAMICA *pilha){
         aux--;
     }
     for(aux=0; aux < pilha->tamanho; aux++){
-        printf("%d ",vet[aux]);
+        printf("%li ",vet[aux]);
     }
     printf("\n");
-    //p_aux = NULL;
     free(vet);
     free(p_aux);
 }
