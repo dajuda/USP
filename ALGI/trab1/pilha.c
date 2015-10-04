@@ -1,10 +1,15 @@
+// CAINA DAJUDA         8531511
+// VICTOR BENEVIDES     8531491
+// PRISCILLA PARODI     8626207
+
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
 #include "pilha.h"
 
 
-//INICIA PILHA
+// CRIA PILHA
 PILHA_DINAMICA *create_stack(){
     PILHA_DINAMICA *aux;
     aux = (PILHA_DINAMICA*) malloc (sizeof(PILHA_DINAMICA));
@@ -12,7 +17,8 @@ PILHA_DINAMICA *create_stack(){
     return (aux);
 }
 
-// CRIA UMA UNIDADE DA PILHA DINAMICA
+
+// CRIA UMA UNIDADE DA PILHA
 NO *unit(){
     NO *aux = (NO*) malloc (sizeof(NO));
     aux->item = (long*) malloc (sizeof(long));
@@ -53,35 +59,48 @@ void new_item(PILHA_DINAMICA *pilha, int x){
     push(pilha, aux);
 }
 
+
 // REALIZA A OPERACAO SOLICITADA COM OS DOIS ULTIMOS
 // ITENS DA PILHA
 void operation(PILHA_DINAMICA *pilha, char *op){
     long x, y, i;
+
+    // SOMA
     if (!strcmp("+", op)){
         y = pop(pilha);
         x = pop(pilha);
         push(pilha, x+y);
     }
+
+    // SUBTRACAO
     if (!strcmp("-", op)){
         y = pop(pilha);
         x = pop(pilha);
         push(pilha, x-y);
     }
+
+    // DIVISAO
     if (!strcmp("/", op)){
         y = pop(pilha);
         x = pop(pilha);
         push(pilha, x/y);
     }
+
+    // MULTIPLICACAO
     if (!strcmp("*", op)){
         y = pop(pilha);
         x = pop(pilha);
         push(pilha, x*y);
     }
+
+    // POTENCIACAO
     if (!strcmp("^", op)){
         y = pop(pilha);
         x = pop(pilha);
         push(pilha, (pow(x,y)));
     }
+
+    // FATORIAL
     if (!strcmp("!", op)){
         y = pop(pilha);
         for(i=1; y > 1; y--){
@@ -96,6 +115,7 @@ void operation(PILHA_DINAMICA *pilha, char *op){
 void insert_zero(PILHA_DINAMICA *pilha){
     push(pilha, 0);
 }
+
 
 // LIMPA A PILHA
 void empty_stack(PILHA_DINAMICA *pilha){

@@ -1,11 +1,18 @@
+// CAINA DAJUDA         8531511
+// VICTOR BENEVIDES     8531491
+// PRISCILLA PARODI     8626207
+
+
 typedef struct pilha_dinamica PILHA_DINAMICA;
 
+// UNIDADE LISTA
 typedef struct NO{
     long *item;
     struct NO *anterior;
 }NO;
 
 
+// UNIDADE PILHA DINAMICA
 struct pilha_dinamica{
     NO *topo;
     int tamanho;
