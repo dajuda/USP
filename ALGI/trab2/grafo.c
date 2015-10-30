@@ -23,21 +23,63 @@ No *unit_edge(int info){
 }
 
 
+List *insert_growing(Lista *L, int x){
+    List *aux, *aux2, *new;
+    aux = L;
+    while(aux->info <= x && aux->vert != NULL){
+        aux2 = aux;
+        aux = aux->vert;
+    }
+
+    new = create_list_unit(x);
+    aux2->vert = new;
+    new->vert = aux;
+    return (new);
+}
+
+
+void insert_vet(No *N, int x){
+    No *aux;
+    aux = N;
+
+    while(aux != NULL){
+        aux = aux->next;
+    }
+    aux = unit_edge(x);
+}
+
+
+int inGraph(List *L, int info){
+    List *aux;
+    aux = L;
+
+    while(aux != NULL){
+        if(aux->info == info){
+            return 1;
+        }
+        aux = aux->vert;
+    }
+
+    return 0;
+}
+
+
 void connect(List *L, int x, int y){
     List *aux;
     No *aux2;
 
-    if(L == NULL){
+    if(!(inGraph(L, x))){
+        aux = insert_growing(L, x);
+        insert_vet(aux->edge, y);
+    }else{
 
     }
-    aux = L;
 
-    while(aux->info != x){
-        aux = aux->vert;
-    }
-    aux2 = aux->edge;
-    while(aux2->info != NULL){
-        aux2 = aux2->next;
+    if(!(inGraph(L, y))){
+        aux = insert_growing(L, y);
+        insert_vet(aux->edge, x);
+    }else{
+// IMPLEMENTA SE ESTIVER NO GRAFO
     }
 }
 
