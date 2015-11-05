@@ -1,11 +1,11 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include "grafo.h"
 
 
-List *create_list_unit(int info){
+List *create_list_unit(){
     List *new;
     new = (List*) malloc (sizeof(List));
-    new->info = info;
     new->edge = NULL;
     new->vert = NULL;
 
@@ -23,18 +23,29 @@ No *unit_edge(int info){
 }
 
 
-List *insert_growing(Lista *L, int x){
+List *insert_growing(List *L, int x){
     List *aux, *aux2, *new;
-    aux = L;
-    while(aux->info <= x && aux->vert != NULL){
-        aux2 = aux;
-        aux = aux->vert;
-    }
 
-    new = create_list_unit(x);
-    aux2->vert = new;
-    new->vert = aux;
-    return (new);
+    if(L == NULL){
+        L = create_list_unit();
+        L->info = x;
+        printf("CCC");
+        return(L);
+    }
+    else{
+        //while(aux->info <= x && aux != NULL){
+            aux = L;
+            aux2 = aux;
+            aux = aux->vert;
+            printf("XXX");
+        //}
+
+        new = create_list_unit();
+        new->info = x;
+        aux2->vert = new;
+        new->vert = aux;
+        return (new);
+    }
 }
 
 
@@ -52,8 +63,12 @@ void insert_vet(No *N, int x){
 int inGraph(List *L, int info){
     List *aux;
     aux = L;
+    if(aux == NULL){
+        printf("MMM");
+        return 0;
+    }
 
-    while(aux != NULL){
+    while(aux->vert != NULL){
         if(aux->info == info){
             return 1;
         }
@@ -64,22 +79,38 @@ int inGraph(List *L, int info){
 }
 
 
+List *searchListElement(List *L, int info){
+    List *aux;
+
+    aux = L;
+    while(aux != NULL){
+        if(aux->info == info){
+            return (aux);
+        }
+        aux = aux->vert;
+    }
+}
+
+
 void connect(List *L, int x, int y){
     List *aux;
     No *aux2;
 
     if(!(inGraph(L, x))){
+        printf("DDD");
         aux = insert_growing(L, x);
-        insert_vet(aux->edge, y);
+        //insert_vet(aux->edge, y);
     }else{
-
+        //aux = searchListElement(L, x);
+        //insert_vet(aux->edge, y);
     }
 
     if(!(inGraph(L, y))){
-        aux = insert_growing(L, y);
-        insert_vet(aux->edge, x);
+        //aux = insert_growing(L, y);
+        //insert_vet(aux->edge, x);
     }else{
-// IMPLEMENTA SE ESTIVER NO GRAFO
+        //aux = searchListElement(L, y);
+        //insert_vet(aux->edge, x);
     }
 }
 

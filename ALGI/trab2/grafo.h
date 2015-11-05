@@ -14,8 +14,9 @@ typedef struct list{
     struct list *vert;
 }List;
 
-List *create_list_unit(int info);
-List *inser_growing(Lista *L, int x);
+List *create_list_unit();
+List *inser_growing(List *L, int x);
+List *searchListElement(List *L, int info);
 No *unit_edge(int info);
 void insert_vet(No *N, int x);
 int inGraph(List *L, int info);
