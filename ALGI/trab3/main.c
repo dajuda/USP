@@ -7,26 +7,38 @@
 
 int main(){
     Node *N;
-    char op[1], word[30];
-    int pg;
+    char op[1], word[30], mychar;
+    int pg, i, signal=1;
 
-    while(strcmp(op, "s") != 0){
+    N = unit();
+    N->pg = create_stack();
+    N->first = 1;
+
+    while(signal){
         scanf("%c", &op);
         switch(op[0]){
             case 'i':
                 scanf("%s%d", &word, &pg);
-                //CHAMHA FUNCAO
+
+                while(i < strlen(word)){
+                    word[i] = tolower(word[i]);
+                    i++;
+                }
+                insert(N, pg, word);
                 break;
 
             case 'b':
                 scanf("%s", &word);
-                //CHAMHA FUNCAO
+                search(N, word);
                 break;
 
             case 'r':
-                //CHAMHA FUNCAO
+                //FUNCAO REMISSIVO AQUI.
                 break;
 
+            case 's':
+                signal = 0;
+                break;
         }
     }
 
