@@ -4,6 +4,71 @@
 
 #include "tree.h"
 
+
+// FUNCAO DE INDICE REMISSIVO
+void remissivo(Node *root){
+    QNode *queue;
+    Node *node;
+    queue = (QNode*) malloc (sizeof(QNode));
+
+    queue->item = root;
+    queue->next = NULL;
+    queue->end = 0;
+
+    while (!queue->end){
+        node = dequeue(queue);
+
+        printf("%s ", node->word);
+        print_pages(node->pg);
+
+        if (node->left != NULL){
+            enqueue(queue, node->left);
+        }
+        if (node->right != NULL){
+            enqueue(queue, node->right);
+        }
+    }
+}
+
+// ENTRA NA FILA
+void enqueue(QNode *queue, Node *node){
+    QNode *new, *aux;
+    new = (QNode*) malloc (sizeof(QNode));
+
+    aux = queue;
+    queue->end = 0;
+
+    while(aux->next != NULL){
+        aux = aux->next;
+    }
+
+    new->item = node;
+    new->next = NULL;
+    new->end = 0;
+
+    aux->next = new;
+}
+
+// SAI DA FILA
+Node *dequeue(QNode *queue){
+    QNode *aux;
+    Node *aux2;
+
+    aux = queue;
+
+    if(queue->next == NULL){
+        aux2 = queue->item;
+        queue->end = 1;
+        return (aux2);
+    }
+
+    queue = queue->next;
+    aux2 = queue->item;
+
+    free(aux);
+    return(aux2);
+}
+
 // CRIA PILHA
 PILHA_DINAMICA *create_stack(){
     PILHA_DINAMICA *aux;

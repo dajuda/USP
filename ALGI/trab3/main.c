@@ -7,7 +7,7 @@
 
 int main(){
     Node *N;
-    char op[1], word[30], mychar;
+    char op, word[50];
     int pg, i, signal=1;
 
     N = unit();
@@ -15,10 +15,10 @@ int main(){
     N->first = 1;
 
     while(signal){
-        scanf("%c", &op);
-        switch(op[0]){
+        op = getchar();
+        switch(op){
             case 'i':
-                scanf("%s%d", &word, &pg);
+                scanf("%s%d", &(*word), &pg);
 
                 while(i < strlen(word)){
                     word[i] = tolower(word[i]);
@@ -28,12 +28,12 @@ int main(){
                 break;
 
             case 'b':
-                scanf("%s", &word);
+                scanf("%s", &(*word));
                 search(N, word);
                 break;
 
             case 'r':
-                //FUNCAO REMISSIVO AQUI.
+                remissivo(N);
                 break;
 
             case 's':
@@ -41,6 +41,5 @@ int main(){
                 break;
         }
     }
-
     return 0;
 }

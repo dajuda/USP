@@ -23,6 +23,13 @@ typedef struct node{
     struct node *right, *left;
 }Node;
 
+// UNIDADE DA LISTA ENCADEADA
+typedef struct q_node{
+    Node *item;
+    int end;
+    struct q_node *next;
+}QNode;
+
 // RETORNA UMA UNIDADE DA ARVORE
 Node *unit();
 
@@ -55,3 +62,12 @@ void print_pages(PILHA_DINAMICA *P);
 
 // PROCURA FOLHA NA ARVORE
 void search(Node *r, char *word);
+
+// REALIZA A BUSCA REMISSIVA
+void remissivo(Node *node);
+
+// INSERE UM ELEMENTO NA LISTA
+void enqueue(QNode *queue, Node *node);
+
+// REMOVE UM ELEMENTO NA LISTA
+Node *dequeue(QNode *queue);
