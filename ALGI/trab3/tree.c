@@ -1,3 +1,7 @@
+// CAINA DAJUDA         8531511
+// VICTOR BENEVIDES     8531491
+// PRISCILLA PARODI     8626207
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -11,32 +15,35 @@ void remissivo(Node *root){
     Node *node;
     queue = (QNode*) malloc (sizeof(QNode));
 
+    if (root == NULL)
+        return;
+
     queue->item = root;
     queue->next = NULL;
     queue->end = 0;
 
-    while (!queue->end){
-        node = dequeue(queue);
+    while (!(queue->end)){
+        node = dequeue(&queue);
 
         printf("%s ", node->word);
         print_pages(node->pg);
 
         if (node->left != NULL){
-            enqueue(queue, node->left);
+            enqueue(&queue, node->left);
         }
         if (node->right != NULL){
-            enqueue(queue, node->right);
+            enqueue(&queue, node->right);
         }
     }
 }
 
 // ENTRA NA FILA
-void enqueue(QNode *queue, Node *node){
+void enqueue(QNode **queue, Node *node){
     QNode *new, *aux;
     new = (QNode*) malloc (sizeof(QNode));
 
-    aux = queue;
-    queue->end = 0;
+    aux = *queue;
+    (*queue)->end = 0;
 
     while(aux->next != NULL){
         aux = aux->next;
@@ -50,22 +57,21 @@ void enqueue(QNode *queue, Node *node){
 }
 
 // SAI DA FILA
-Node *dequeue(QNode *queue){
+Node *dequeue(QNode **queue){
     QNode *aux;
     Node *aux2;
 
-    aux = queue;
+    aux = *queue;
 
-    if(queue->next == NULL){
-        aux2 = queue->item;
-        queue->end = 1;
+    if((*queue)->next == NULL){
+        aux2 = (*queue)->item;
+        (*queue)->end = 1;
         return (aux2);
     }
 
-    queue = queue->next;
-    aux2 = queue->item;
+    *queue = (*queue)->next;
+    aux2 = (*queue)->item;
 
-    free(aux);
     return(aux2);
 }
 

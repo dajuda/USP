@@ -1,3 +1,7 @@
+// CAINA DAJUDA         8531511
+// VICTOR BENEVIDES     8531491
+// PRISCILLA PARODI     8626207
+
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -67,7 +71,7 @@ void search(Node *r, char *word);
 void remissivo(Node *node);
 
 // INSERE UM ELEMENTO NA LISTA
-void enqueue(QNode *queue, Node *node);
+void enqueue(QNode **queue, Node *node);
 
 // REMOVE UM ELEMENTO NA LISTA
-Node *dequeue(QNode *queue);
+Node *dequeue(QNode **queue);

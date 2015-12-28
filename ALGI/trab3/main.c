@@ -1,3 +1,7 @@
+// CAINA DAJUDA         8531511
+// VICTOR BENEVIDES     8531491
+// PRISCILLA PARODI     8626207
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
