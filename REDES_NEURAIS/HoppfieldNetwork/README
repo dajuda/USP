@@ -1,0 +1,37 @@
+Execução
+
+    Dependências:
+        - python3-numpy
+        - python3-matplotlib
+
+    Para a execução do trabalho primeiramente é necessário a instalação das
+    dependências já informadas, os nomes podem variar dependendo da
+    distribuição linux utilizada.  Para a execução, vá até o diretório que
+    contenha os aquivos e execute o seguinte comando (via terminal):
+
+        $ python3 main.py
+
+    Posteriormente o software irá lhe informar três feedbacks, que consistem
+    no estado que se encontra sua execução, sendo eles:
+        - Treinamento
+        - Verificação de aprendizado
+        - Teste com ruído
+
+    Após isso serão geradas os algumas imagens no diretório referentes aos
+    testes. Essas imagens consistem em 4 tipos:
+        - Padrão (‘padrao_X.png’)
+            - Imagens geradas a partir do vetor de característica usado
+              como padrão de aprendizado
+        - Verificação de aprendizado (‘lembranca_padrao_X.png’)
+            - Imagens geradas a partir das ‘lembranças’ dos padrões
+              aprendidos pela rede. Essas imagens são utilizadas para
+              verificar se a rede aprendeu corretamente.
+        - Teste (‘teste_X.png’)
+            - Imagens com ruído para a realização dos testes.
+        - Resultado (‘resultado_teste_X.png’)
+            - Imagens de resultado dos testes, essas imagens representam o
+              padrão identificado pela rede para imagem com ruído.  Os
+              resultados são identificados pelo numero do arquivo, por
+              exemplo:
+
+    teste_1.png → resultado_teste_1.png
